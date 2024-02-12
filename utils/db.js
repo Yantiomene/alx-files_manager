@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import sha1 from 'sha1';
 
 class DBClient {
   constructor() {
@@ -33,6 +34,28 @@ class DBClient {
     // Get the number of documents in the collection files
     if (!this.isAlive) return 0;
     return this.db.collection('files').countDocuments();
+  }
+
+  async getUser(email) {
+    await this.client.connect();
+    const user = await this.client.db(this.database).collection('users').find({ email }).toArray();
+    if (!user.length) return null;
+    return user[0];
+  }
+
+  async userExist(email) {
+    const user = await this.getUser(email);
+    if (user) return true;
+    return false;
+  }
+
+  async createUser(email, password) {
+    const hashPwd = sha1(password);
+    await this.client.connect();
+
+    const result = await this.client.db(this.database)
+      .collection('users').insertOne({ email, password: hashPwd });
+    return result;
   }
 }
 
