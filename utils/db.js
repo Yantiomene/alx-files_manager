@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import sha1 from 'sha1';
 
 class DBClient {
@@ -56,6 +56,14 @@ class DBClient {
     const result = await this.client.db(this.database)
       .collection('users').insertOne({ email, password: hashPwd });
     return result;
+  }
+
+  async getUserById(id) {
+    const _id = new ObjectID(id);
+    await this.client.connect();
+    const user = await this.client.db(this.database).collection('users').find({ _id }).toArray();
+    if (!user.length) return null;
+    return user[0];
   }
 }
 
