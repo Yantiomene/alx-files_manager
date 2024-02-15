@@ -1,9 +1,9 @@
 import { v4 } from 'uuid';
-import redisClient from '../utils/redis';
-import dbClient from '../utils/db';
+import redisClient from '../utils/redis.js';
+import dbClient from '../utils/db.js';
 import {
   getToken, getAuthHeader, decodeToken, getCred,
-} from '../utils/utils';
+} from '../utils/utils.js';
 
 function unAuthError(res) {
   res.status(401).json({ error: 'Unauthorized' });
