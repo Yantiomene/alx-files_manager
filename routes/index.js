@@ -4,7 +4,7 @@ import UsersController from '../controllers/UsersController.js';
 import AuthController from '../controllers/AuthController.js';
 import FilesController from '../controllers/FilesController.js';
 
-const routes = express.Router();
+const router = Router();
 
 routes.get('/status', AppController.getStatus);
 routes.get('/stats', AppController.getStats);
@@ -16,4 +16,4 @@ routes.post('/files', FilesController.postUpload);
 routes.get('/files/:id', FilesController.getShow);
 routes.get('/files', FilesController.getIndex);
 
-export default routes;
+module.exports = router;

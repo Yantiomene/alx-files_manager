@@ -1,8 +1,9 @@
 import express from 'express';
 import routes from './routes/index.js';
 
+
 const server = express();
-const PORT = process.env.PORT ? process.env.PORT : 5000;
+const PORT = process.env.PORT || 5000;
 
 server.use(express.json({ limit: '100mb' }));
 server.use(express.urlencoded({ limit: '100mb', extended: true }));
