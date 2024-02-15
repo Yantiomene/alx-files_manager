@@ -2,7 +2,9 @@ import process from 'process';
 import fs from 'fs/promises';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+// eslint-disable-next-line import/extensions
 import dbClient from '../utils/db.js';
+// eslint-disable-next-line import/extensions
 import redisClient from '../utils/redis.js';
 
 class FilesController {
@@ -74,6 +76,7 @@ class FilesController {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
   static async getShow(req, res) {
     try {
       const token = req.headers['x-token'];

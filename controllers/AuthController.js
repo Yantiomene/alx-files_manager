@@ -1,6 +1,9 @@
 import { v4 } from 'uuid';
+// eslint-disable-next-line import/extensions
 import redisClient from '../utils/redis.js';
+// eslint-disable-next-line import/extensions
 import dbClient from '../utils/db.js';
+// eslint-disable-next-line import/extensions
 import {
   getToken, getAuthHeader, decodeToken, getCred,
 } from '../utils/utils.js';
